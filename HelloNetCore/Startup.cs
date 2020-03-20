@@ -16,6 +16,8 @@ namespace HelloNetCore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc()
+                .AddRazorRuntimeCompilation(); // required to run BrowserLink middleware
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,16 +26,23 @@ namespace HelloNetCore
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink(); //adding BrowserLink middleware.
             }
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                //Default route
+                endpoints.MapGet("/default", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });
+
             });
         }
     }
