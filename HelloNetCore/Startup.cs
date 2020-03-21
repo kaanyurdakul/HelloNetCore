@@ -33,15 +33,24 @@ namespace HelloNetCore
 
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=home}/{action=index}/{id?}"
+                );
 
-                //Default route
-                endpoints.MapGet("/default", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute(
+                     name: "first",
+                     pattern: "{controller}"
+                 );
+
+
+
+                //automatically created by visual studio
+                //endpoints.MapGet("/default", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
 
             });
         }
