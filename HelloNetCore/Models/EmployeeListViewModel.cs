@@ -5,7 +5,7 @@ namespace HelloNetCore.Models
 {
     public class EmployeeListViewModel
     {
-        public List<Employee> Eployees { get; set; }
+        public List<Employee> Employees { get; set; }
         public List<string> Cities { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace HelloNetCore.Controllers
 
             var model = new EmployeeListViewModel
             {
-                Eployees = employees,
+                Employees = employees,
                 Cities = cities
             };
             return View(model);
@@ -65,6 +65,43 @@ namespace HelloNetCore.Controllers
                 new Employee{Id=3 , FirstName="Melek", LastName="Subaşı", CityId=34 }
             };
             return Json(employees);
+        }
+        public ViewResult RazorDemo()
+        {
+            List<Employee> employees = new List<Employee> {
+                new Employee{Id=1 , FirstName="Aylin", LastName="Aslım", CityId=7 },
+                new Employee{Id=2 , FirstName="Cemal", LastName="Süreyya", CityId=34 },
+                new Employee{Id=3 , FirstName="Melek", LastName="Subaşı", CityId=34 }
+            };
+
+            List<string> cities = new List<string> { "Ankara", "İstanbul", "Eskişehir", "İzmir", "Antalya" };
+
+            var model = new EmployeeListViewModel
+            {
+                Employees = employees,
+                Cities = cities
+            };
+            return View(model);
+        }
+
+        public JsonResult Index10(string key)
+        {
+            List<Employee> employees = new List<Employee> {
+                new Employee{Id=1 , FirstName="Aylin", LastName="Aslım", CityId=7 },
+                new Employee{Id=2 , FirstName="Cemal", LastName="Süreyya", CityId=34 },
+                new Employee{Id=3 , FirstName="Melek", LastName="Subaşı", CityId=34 }
+            };
+            var result = string.IsNullOrEmpty(key) ? employees : employees.Where(x => x.FirstName.ToLower().Contains(key));
+
+            //same shit different smell :)
+
+            //IEnumerable<Employee> result;
+            //if (string.IsNullOrEmpty(key))
+            //    result = employees;
+            //else
+            //    result = employees.Where(x => x.FirstName.ToLower().Contains(key));
+   
+            return Json(result);
         }
     }
 }

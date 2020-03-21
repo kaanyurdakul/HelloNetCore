@@ -1,0 +1,48 @@
+﻿@model HelloNetCore.Models.EmployeeListViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RazorDemo</title>
+</head>
+<body>
+    <p style="position:absolute; bottom:0; right:1em">App was compiled at @DateTime.Now for you.</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+
+            <th>Firstname</th>
+
+            <th>Lastname</th>
+
+            <th>City Id</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Employees) {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.CityId
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
