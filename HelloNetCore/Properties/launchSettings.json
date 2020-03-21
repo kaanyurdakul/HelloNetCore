@@ -1,7 +1,11 @@
-﻿{
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/HelloNetCore",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:54926",
       "sslPort": 0
@@ -18,6 +22,17 @@
     "HelloNetCore": {
       "commandName": "Project",
       "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5000"
+    },
+    "Watch": {
+      "commandName": "Executable",
+      "executablePath": "dotnet.exe",
+      "commandLineArgs": "watch run",
+      "workingDirectory": "$(ProjectDir)",
+      "launchBrowser": true,
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -25,3 +40,6 @@
     }
   }
 }
+
+
+

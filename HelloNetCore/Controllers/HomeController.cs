@@ -103,5 +103,17 @@ namespace HelloNetCore.Controllers
    
             return Json(result);
         }
+
+        public ViewResult EmployeeForm()
+        {
+            return View();
+        }
+
+        public string Index11(int Id)
+        {
+            return Id.ToString();
+        }
+        
+
     }
 }
