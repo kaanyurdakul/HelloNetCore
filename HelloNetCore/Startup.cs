@@ -39,10 +39,10 @@ namespace HelloNetCore
                     pattern: "{controller=home}/{action=index}/{id?}"
                 );
 
-                endpoints.MapControllerRoute(
-                     name: "first",
-                     pattern: "{controller}"
-                 );
+                //endpoints.MapControllerRoute(
+                //     name: "first",
+                //     pattern: "{controller}"
+                // );
 
 
 
