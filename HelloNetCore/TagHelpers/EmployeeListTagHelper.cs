@@ -12,6 +12,12 @@ namespace HelloNetCore.TagHelpers
     public class EmployeeListTagHelper :TagHelper
     {
         private List<Employee> _employees;
+
+        private const string ListCountAttributeName = "count";
+
+        [HtmlAttributeName(ListCountAttributeName)]
+        public int ListCount { get; set; }
+
         public EmployeeListTagHelper()
         {
             _employees = new List<Employee> {
@@ -20,13 +26,17 @@ namespace HelloNetCore.TagHelpers
                 new Employee{Id=3 , FirstName="Melek", LastName="Subaşı", CityId=34 }
             };
         }
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "div";
 
+         
+            var query = _employees.Take(ListCount == 0 ? _employees.Count : ListCount); //returns the amount of "ListCount"
+
             //StringBuilder stringBuilder = new StringBuilder();
             string content = "";
-            foreach (var item in _employees)
+            foreach (var item in query)
             {
                 //stringBuilder.AppendFormat("<h2><a href='/employee/detail/{0}'>{1}</a></h2>", item.Id, item.FirstName);
                 content += $"<h2><a href='/employee/detail/{item.Id}'>{item.FirstName}</a></h2>";

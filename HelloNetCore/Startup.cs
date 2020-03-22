@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -30,29 +31,40 @@ namespace HelloNetCore
             }
 
             app.UseRouting();
+            #region Route Instances
+            //app.UseEndpoints(endpoints =>
+            //{
 
-            app.UseEndpoints(endpoints =>
-            {
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=home}/{action=index}/{id?}"
+            //    );
 
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=home}/{action=index}/{id?}"
-                );
-
-                //endpoints.MapControllerRoute(
-                //     name: "first",
-                //     pattern: "{controller}"
-                // );
+            //endpoints.MapControllerRoute(
+            //     name: "first",
+            //     pattern: "{controller}"
+            // );
 
 
 
-                //automatically created by visual studio
-                //endpoints.MapGet("/default", async context =>
-                //{
-                //    await context.Response.WriteAsync("Hello World!");
-                //});
+            //automatically created by visual studio
+            //endpoints.MapGet("/default", async context =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
 
-            });
+            //}); 
+            #endregion
+            app.UseEndpoints(ConfigureRoute);
+
+            
         }
+
+        private void ConfigureRoute(IEndpointRouteBuilder endpointRouteBuilder)
+        {
+            endpointRouteBuilder.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
+            endpointRouteBuilder.MapControllerRoute("MyRoute", "kaan/{controller=home}/{action=index3}/{id?}");
+        }
+
     }
 }
