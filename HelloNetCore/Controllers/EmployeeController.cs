@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloNetCore.Entities;
 using HelloNetCore.Models;
+using HelloNetCore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -11,6 +12,11 @@ namespace HelloNetCore.Controllers
 {
     public class EmployeeController : Controller
     {
+        private ICalculator _calculator;
+        public EmployeeController(ICalculator calculator)
+        {
+            _calculator = calculator;
+        }
         public IActionResult Add()
         {
             EmployeeAddViewModel employeeAddViewModel = new EmployeeAddViewModel
@@ -29,6 +35,10 @@ namespace HelloNetCore.Controllers
         public IActionResult Add(Employee employee)
         {
             return View();
+        }
+        public string Calculator()
+        {
+            return _calculator.Calculate(100).ToString();
         }
     }
 }
