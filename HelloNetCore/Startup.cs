@@ -29,9 +29,9 @@ namespace HelloNetCore
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink(); //adding BrowserLink middleware.
             }
-
             app.UseRouting();
-            #region Route Instances
+            app.UseStaticFiles();
+            #region Route e.g.
             //app.UseEndpoints(endpoints =>
             //{
 
