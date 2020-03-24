@@ -22,7 +22,7 @@ namespace HelloNetCore.Controllers
         // GET: Student
         public async Task<IActionResult> Index()
         {
-            return View(await _context.students.ToListAsync());
+            return View(await _context.Students.ToListAsync());
         }
 
         // GET: Student/Details/5
@@ -33,7 +33,7 @@ namespace HelloNetCore.Controllers
                 return NotFound();
             }
 
-            var student = await _context.students
+            var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -73,7 +73,7 @@ namespace HelloNetCore.Controllers
                 return NotFound();
             }
 
-            var student = await _context.students.FindAsync(id);
+            var student = await _context.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace HelloNetCore.Controllers
                 return NotFound();
             }
 
-            var student = await _context.students
+            var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -139,15 +139,15 @@ namespace HelloNetCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var student = await _context.students.FindAsync(id);
-            _context.students.Remove(student);
+            var student = await _context.Students.FindAsync(id);
+            _context.Students.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentExists(int id)
         {
-            return _context.students.Any(e => e.Id == id);
+            return _context.Students.Any(e => e.Id == id);
         }
     }
 }

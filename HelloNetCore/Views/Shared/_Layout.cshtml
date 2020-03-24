@@ -8,6 +8,10 @@
 <body>
     <div>Menu</div>
     <div>
+        @*@await  Component.InvokeAsync("StudentList", new { filter = "b" }) sending filter data without query string*@
+        @await Component.InvokeAsync("StudentList")
+    </div>
+    <div>
         @RenderBody()
     </div>
     <div>Footer</div>

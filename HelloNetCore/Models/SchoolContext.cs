@@ -13,6 +13,6 @@ namespace HelloNetCore.Models
         {
            
         }
-        public DbSet<Student> students { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 }

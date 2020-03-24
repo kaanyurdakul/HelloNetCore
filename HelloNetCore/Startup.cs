@@ -69,7 +69,7 @@ namespace HelloNetCore
         {
             endpointRouteBuilder.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
             endpointRouteBuilder.MapControllerRoute("MyRoute", "kaan/{controller=home}/{action=index3}/{id?}");
-            endpointRouteBuilder.MapRazorPages();
+            //endpointRouteBuilder.MapRazorPages();
         }
 
     }
