@@ -21,6 +21,9 @@ namespace HelloNetCore
             services.AddScoped<ICalculator, Calculator18>(); // We can change Calculator18 another ICaltulator types.
             //services.AddSingleton<ICalculator, Calculator18>();
             //services.AddTransient<ICalculator, Calculator18>();
+            services.AddSession();
+            services.AddDistributedMemoryCache();
+
 
             var connection = @"Server = (localdb)\MSSQLLocalDB; Database=SchoolDb; Integrated Security = True;";
             services.AddDbContext<SchoolContext>(options => options.UseSqlServer(connection));
@@ -29,12 +32,19 @@ namespace HelloNetCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            env.EnvironmentName = env.EnvironmentName = "Pruduction";  // EnvironmentName.Production;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink(); //adding BrowserLink middleware.
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
             app.UseRouting();
+            app.UseSession();
+            app.UseEndpoints(ConfigureRoute);
             app.UseStaticFiles();
             #region Route e.g.
             //app.UseEndpoints(endpoints =>
@@ -60,16 +70,13 @@ namespace HelloNetCore
 
             //}); 
             #endregion
-            app.UseEndpoints(ConfigureRoute);
-
-
         }
 
         private void ConfigureRoute(IEndpointRouteBuilder endpointRouteBuilder)
         {
-            endpointRouteBuilder.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
+            endpointRouteBuilder.MapControllerRoute("default", "{controller=Filter}/{action=index}/{id?}");
             endpointRouteBuilder.MapControllerRoute("MyRoute", "kaan/{controller=home}/{action=index3}/{id?}");
-            //endpointRouteBuilder.MapRazorPages();
+            endpointRouteBuilder.MapRazorPages();
         }
 
     }

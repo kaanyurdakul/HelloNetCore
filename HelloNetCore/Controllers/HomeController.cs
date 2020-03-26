@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using HelloNetCore.Entities;
+using HelloNetCore.Filters;
 using HelloNetCore.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,8 +14,11 @@ namespace HelloNetCore.Controllers
         {
             return "Hello sweety";
         }
+        [HandleException(ViewName = "DivideByZeroError", ExceptionType = typeof(DivideByZeroException))]
+        [HandleException(ViewName = "Error", ExceptionType = typeof(NullReferenceException))]
         public ViewResult Index2()
         {
+            throw new NullReferenceException();
             return View();
         }
         public ViewResult Index3()

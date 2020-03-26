@@ -22,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Pages\Customer\Index.cshtml" />
+    <None Include="Pages\Student\index.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
 
