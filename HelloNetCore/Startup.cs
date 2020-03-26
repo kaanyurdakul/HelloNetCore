@@ -75,7 +75,8 @@ namespace HelloNetCore
         private void ConfigureRoute(IEndpointRouteBuilder endpointRouteBuilder)
         {
             endpointRouteBuilder.MapControllerRoute("default", "{controller=Filter}/{action=index}/{id?}");
-            endpointRouteBuilder.MapControllerRoute("MyRoute", "kaan/{controller=home}/{action=index3}/{id?}");
+            endpointRouteBuilder.MapControllerRoute("myroute", "kaan/{controller=home}/{action=index3}/{id?}");
+            endpointRouteBuilder.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             endpointRouteBuilder.MapRazorPages();
         }
 
