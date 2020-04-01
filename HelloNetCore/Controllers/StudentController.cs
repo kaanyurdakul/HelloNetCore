@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HelloNetCore.Entities;
 using HelloNetCore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HelloNetCore.Controllers
 {
@@ -18,7 +19,7 @@ namespace HelloNetCore.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         // GET: Student
         public async Task<IActionResult> Index()
         {
